@@ -45,6 +45,7 @@ exports.register = async (req, res) => {
           user: {
               name: user.name,
               email: user.email,
+              password: user.password,
               role: user.role,
               address: user.address,
           },
@@ -91,6 +92,7 @@ exports.login = async (req,res) => {
           // 7. send response
           res.json({
             user: {
+                _id : user._id,
                 name: user.name,
                 email: user.email,
                 role: user.role,
@@ -153,4 +155,13 @@ res.json(update)
 } catch (error) {
     console.log(error)
 }
+}
+
+exports.getUsers = async (req,res) => {
+    try {
+        const users = await User.find({}).select("-password");
+        res.json(users);
+    } catch (error) {
+        console.log(error)
+    }
 }

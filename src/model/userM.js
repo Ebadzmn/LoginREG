@@ -18,12 +18,12 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         trim:true,
-        min: 6,
+        min: 5,
         max: 32,
     },
     role: {
-        type: Number,
-        default: 0
+        type: String,
+        default: "user"
     }
 },
 
